@@ -46,14 +46,60 @@ fetch(urlPopulares)
 return response.json()
 })
 .then(function(information) {
-console.log(information);
+  console.log(information.results);
+ var arrayDePeliculas = information.results;
+ var destino = document.querySelector(".peliculas_populares")
+ for (var i = 0; i < arrayDePeliculas.length; i++) {
+   destino.innerHTML += "<h1>" + arrayDePeliculas[i].title + "</h1>"
+}
 
 
 
-// <article class="">
-//     <p>titulo</p>
-//     <img src="" alt="">
-// </article>
+})
+.catch(function(error) {
+console.log("Error: " + error);
+})
+
+
+
+var urlValoradas = "https://api.themoviedb.org/3/movie/top_rated?api_key="+api_key+"&language=en-US&page=1"
+
+fetch(urlValoradas)
+.then(function(response) {
+return response.json()
+})
+.then(function(information) {
+  console.log(information.results);
+ var arrayDePeliculas = information.results;
+ var destino = document.querySelector(".mejor_valoradas")
+ for (var i = 0; i < arrayDePeliculas.length; i++) {
+   destino.innerHTML += "<h1>" + arrayDePeliculas[i].title + "</h1>"
+   }
+
+
+
+})
+.catch(function(error) {
+console.log("Error: " + error);
+})
+
+
+var urlSoon = "https://api.themoviedb.org/3/movie/upcoming?api_key="+api_key+"&language=en-US&page=1"
+
+
+fetch(urlSoon)
+.then(function(response) {
+return response.json()
+})
+.then(function(information) {
+  console.log(information.results);
+ var arrayDePeliculas = information.results;
+ var destino = document.querySelector(".proximamente")
+ for (var i = 0; i < arrayDePeliculas.length; i++) {
+   destino.innerHTML += "<h1>" + arrayDePeliculas[i].title + "</h1>"
+   }
+
+
 
 })
 .catch(function(error) {
